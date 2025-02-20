@@ -1,14 +1,14 @@
 
 
 
-.section--pokemon{
+.poke--list{
     display: grid;
     grid-template-columns: repeat(auto-fill, 6.5rem);
     gap: 0.5rem;
     justify-content: center;
 }
 
-.card--pokemon {
+.poke--card {
     width: 6.5rem;
     height: 6.75rem;
 }
