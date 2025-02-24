@@ -8,10 +8,7 @@
     justify-content: center;
 }
 
-.poke--card {
-    width: 6.5rem;
-    height: 6.75rem;
-}
+
 
 
 @media (width > 22.5rem){

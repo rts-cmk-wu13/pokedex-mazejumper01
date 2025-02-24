@@ -1,7 +1,4 @@
 
-
-
-
 /**
  * Extract id as string from url to pokemon
  * @param {string} pokemonUrl - a url to a pokemon from pokeApi 
@@ -15,6 +12,8 @@ const artworkUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/spr
 
 // her begynder selve komponentet
 let sectionElm = document.createElement("section")
+  
+
 sectionElm.className = "poke--list"
 
 fetch("/data/pokemon.json")
@@ -22,11 +21,15 @@ fetch("/data/pokemon.json")
         return response.json()
     }).then(
         function(data) {
-            sectionElm.innerHTML =  data.map(pokemon => `
+            sectionElm.innerHTML =  data.map(pokemon => 
+                
+                
+               `
                 
                 <article class="poke--card">
-                    <h2>${pokemon.name}</h2>
+                    <p class="poke--number"> #${getIdFromPokemon(pokemon.url).toString().padStart(3, '0')} </p>
                     <img src="${artworkUrl}/${getIdFromPokemon(pokemon.url)}.png" alt="${pokemon.name}">
+                    <h2>${pokemon.name}</h2>
                 </article>
             
                 `).join("")

@@ -1,6 +1,7 @@
 [
     {
         "name": "bulbasaur",
+        "number": "1",
         "url": "https://pokeapi.co/api/v2/pokemon/1/"
       },
       {
@@ -13,6 +14,7 @@
       },
       {
         "name": "charmander",
+        "number": "4",
         "url": "https://pokeapi.co/api/v2/pokemon/4/"
       },
       {
@@ -79,6 +81,8 @@
         "name": "raticate",
         "url": "https://pokeapi.co/api/v2/pokemon/20/"
       }
+
+      
 ]
 
 
