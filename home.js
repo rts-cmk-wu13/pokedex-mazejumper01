@@ -10,19 +10,30 @@ function getIdFromPokemon(pokemonUrl) {
 
 const artworkUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork"
 
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if(entry.isIntersecting) {
+            currentOffset = currentOffset + 50
+            fetchPokemon(currentOffset)
+        }
+    })
+})
+
 // her begynder selve komponentet
 let sectionElm = document.createElement("section")
-  
+sectionElm.className = "poke--list" 
 
-sectionElm.className = "poke--list"
+let currentOffset = 0
 
-fetch("/data/pokemon.json")
+function fetchPokemon(offset) {
+
+
+fetch(`https://pokeapi.co/api/v2/pokemon?offset=${currentOffset}&limit=50`)
     .then(function(response) {
         return response.json()
     }).then(
         function(data) {
-            sectionElm.innerHTML =  data.map(pokemon => 
-                
+            sectionElm.innerHTML +=  data.results.map(pokemon => 
                 
                `
                 
@@ -34,7 +45,13 @@ fetch("/data/pokemon.json")
             
                 `).join("")
 
+                let observedPokemon = sectionElm.querySelector("article:nth-last-child(5)")
+                observer.observe(observedPokemon)
         }
     )
 
 document.querySelector("main").append(sectionElm)
+
+}
+
+fetchPokemon(currentOffset)
