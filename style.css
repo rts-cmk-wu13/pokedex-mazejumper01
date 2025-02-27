@@ -3,6 +3,10 @@
 
 
 
+/* -------------------- Header ------------------- 
+--------------------------------------------------
+*/
+
 
 header {
     background-color: #DC0A2D;
@@ -10,14 +14,7 @@ header {
     padding-block-start: 2rem;
 }
 
-
-#searchbar {
-    width: 17.5rem;
-    height: 2rem;
-
-    border: none;
-    border-radius: 1rem;
-}
+/* ----- image and the h1 ----- */
 
 .pokeball {
     width: 1.25rem;
@@ -29,6 +26,38 @@ h1 {
     color: white;
 }
 
+/* ----- searchbar and sorting btn ----- */
+
+#searchbar {
+    width: 17.5rem;
+    height: 2rem;
+    box-shadow: inset 0px 3px 11px -6px;
+
+    padding-inline-start: 1rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+
+
+
+
+.sort--by {
+    width: 2rem;
+    height: 2rem;
+
+    border-radius: 1rem;
+    border: none;
+
+    box-shadow: inset 0px 3px 11px -6px;
+
+    color: #DC0A2D;
+
+}
+
+
+/* ----- wrapper ----- */
+
 .wrapper{
     display: flex;
     flex-direction: column;
@@ -36,6 +65,9 @@ h1 {
 
     background-color: #DC0A2D;
 }
+
+
+
 
 main {
     margin-block-start: 2rem;
@@ -50,7 +82,10 @@ main {
 
 
 h2 {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-weight: normal;
+    
+
 }
 
 .poke--card {
@@ -63,7 +98,7 @@ h2 {
 
     background-color: white;
 
-    box-shadow: 0px 1px 6px 0px;
+    box-shadow: 0px 3px 11px -6px;
     border-radius: 1rem;
 }
 
@@ -71,6 +106,15 @@ h2 {
     width: 4.5rem;
     height: 4.5rem;
 }
+
+.poke--number {
+    width: 75%;
+    text-align: end;
+    
+    font-size: 0.75rem;
+    color: #666666;
+}
+
 
 @media (width > 22.5rem){
 

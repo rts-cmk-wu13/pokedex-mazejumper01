@@ -26,32 +26,43 @@ sectionElm.className = "poke--list"
 let currentOffset = 0
 
 function fetchPokemon(offset) {
+    fetch(`https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=50`)
+        .then(response => response.json())
+        .then(data => {
+            // Generate the cards with the correct data-id
+            const newCards = data.results.map(pokemon => {
+                // Get the Pokémon ID from the URL
+                const pokemonId = getIdFromPokemon(pokemon.url);
 
+                return `
+                    <article class="poke--card" data-id="${pokemonId}">
+                        <p class="poke--number">#${pokemonId.toString().padStart(3, '0')}</p>
+                        <img src="${artworkUrl}/${pokemonId}.png" alt="${pokemon.name}" loading="lazy">
+                        <h2>${pokemon.name}</h2>
+                    </article>
+                `;
+            }).join("");
 
-fetch(`https://pokeapi.co/api/v2/pokemon?offset=${currentOffset}&limit=50`)
-    .then(function(response) {
-        return response.json()
-    }).then(
-        function(data) {
-            sectionElm.innerHTML +=  data.results.map(pokemon => 
-                
-               `
-                
-                <article class="poke--card">
-                    <p class="poke--number"> #${getIdFromPokemon(pokemon.url).toString().padStart(3, '0')} </p>
-                    <img src="${artworkUrl}/${getIdFromPokemon(pokemon.url)}.png" alt="${pokemon.name}">
-                    <h2>${pokemon.name}</h2>
-                </article>
-            
-                `).join("")
+            sectionElm.innerHTML += newCards; // Add all new cards to the section
 
-                let observedPokemon = sectionElm.querySelector("article:nth-last-child(5)")
-                observer.observe(observedPokemon)
-        }
-    )
+            // Now add event listeners for all .poke--card elements
+            document.querySelectorAll(".poke--card").forEach(card => {
+                card.addEventListener("click", function() {
+                    const pokemonId = this.getAttribute("data-id");
+                    if (pokemonId) {
+                        // Redirect to the detail page for the clicked Pokémon
+                        window.location.href = `detail.html?id=${pokemonId}`;
+                    } else {
+                        console.error("No data-id found for this Pokémon card.");
+                    }
+                });
+            });
 
-document.querySelector("main").append(sectionElm)
+            let observedPokemon = sectionElm.querySelector("article:nth-last-child(5)");
+            observer.observe(observedPokemon);
+        });
 
+    document.querySelector("main").append(sectionElm);
 }
 
 fetchPokemon(currentOffset)

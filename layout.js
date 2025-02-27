@@ -9,7 +9,9 @@ divElm.innerHTML = `
         <h1>Pokédex</h1>
 
         <form class="header--search" action="search">
-            <input type="search" name="search" id="searchbar">
+            <input type="search" name="search" id="searchbar" placeholder="search">
+
+            <button class="sort--by">#</button>
         </form>
     </header>
     <div class="wrapper">
